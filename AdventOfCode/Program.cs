@@ -10,7 +10,7 @@ namespace AdventOfCode
                 .AddSingleton<IReader, FileReader>()
                 .BuildServiceProvider();
 
-            var _reader = serviceProvider.GetRequiredService<IReader>();
+            IReader _reader = serviceProvider.GetRequiredService<IReader>();
 
             Submarine submarine = new Submarine();
 
