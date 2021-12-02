@@ -12,6 +12,7 @@ namespace AdventOfCode
         private static Sonar StartSonar = new Sonar();
 
         private Position Position { get; set; }
+        private Navigation Navigation { get; set; }
 
         public readonly Sonar Sonar;
 
@@ -19,6 +20,7 @@ namespace AdventOfCode
         {
             Position = StartPosition;
             Sonar = StartSonar;
+            Navigation = new Navigation();
         }
 
         public Position GetPosition()
@@ -26,42 +28,11 @@ namespace AdventOfCode
             return this.Position;
         }
 
-
         public void NavigateFromInput(List<NavigationInput> input, int navigationVersion)
         {
-            if(navigationVersion == 1)
-            {
-                this.Position.Y = input.Select(t => t.Direction == "down" ? t.Amount : t.Direction == "up" ? t.Amount * -1 : 0).Sum();
-                this.Position.X = input.Where(t => t.Direction == "forward").Select(t => t.Amount).Sum();
-            }
-            else if(navigationVersion == 2)
-            {
-                int y = 0;
-                int x = 0;
-                int aim = 0;
-                foreach (var i in input)
-                {
-                    switch (i.Direction)
-                    {
-                        case "down":
-                            aim = aim + i.Amount;
-                            break;
-                        case "up":
-                            aim = aim - i.Amount;
-                            break;
-                        case "forward":
-                            x = x + i.Amount;
-                            y = y + (aim * i.Amount);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                this.Position.Y = y;
-                this.Position.X = x;
-                this.Position.Aim = aim;
-            }
+            Position = this.Navigation.NavigateFromInput(input, navigationVersion);
         }
+
     }
 
     public class Position
@@ -123,6 +94,48 @@ namespace AdventOfCode
                 }
             }
             return numOfIncreases;
+        }
+    }
+
+    public class Navigation
+    {
+        public Position NavigateFromInput(List<NavigationInput> input, int navigationVersion)
+        {
+            Position position = new Position();
+
+            if (navigationVersion == 1)
+            {
+                position.Y = input.Select(t => t.Direction == "down" ? t.Amount : t.Direction == "up" ? t.Amount * -1 : 0).Sum();
+                position.X = input.Where(t => t.Direction == "forward").Select(t => t.Amount).Sum();
+            }
+            else if (navigationVersion == 2)
+            {
+                int y = 0;
+                int x = 0;
+                int aim = 0;
+                foreach (var i in input)
+                {
+                    switch (i.Direction)
+                    {
+                        case "down":
+                            aim = aim + i.Amount;
+                            break;
+                        case "up":
+                            aim = aim - i.Amount;
+                            break;
+                        case "forward":
+                            x = x + i.Amount;
+                            y = y + (aim * i.Amount);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                position.Y = y;
+                position.X = x;
+                position.Aim = aim;
+            }
+            return position;
         }
     }
 
