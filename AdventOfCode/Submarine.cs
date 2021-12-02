@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode
 {
-    public class Submarine : ISubmarine
+    public class Submarine
     {
         private static Position StartPosition = new Position();
         private static Sonar StartSonar = new Sonar();
@@ -128,7 +128,6 @@ namespace AdventOfCode
 
     public interface ISubmarine
     {
-        
     }
 
     public class NavigationInput

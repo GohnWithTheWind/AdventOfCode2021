@@ -1,9 +1,16 @@
-﻿namespace AdventOfCode
+﻿using Microsoft.Extensions.DependencyInjection;
+
+namespace AdventOfCode
 {
     class Program
     {
         static void Main(string[] args)
         {
+            var serviceProvider = new ServiceCollection()
+                .AddSingleton<IReader, FileReader>()
+                .BuildServiceProvider();
+
+            var _reader = serviceProvider.GetRequiredService<IReader>();
 
             Submarine submarine = new Submarine();
 
@@ -35,12 +42,12 @@
                 if (day == 1)
                 {
                     result = string.Format("Descentspeed: {0}.", submarine.Sonar.CalculateDescentSpeed(
-                        FileReader.FileToIntList("InputFiles/Day1/input.txt"), step).ToString());
+                        _reader.FileToIntList("InputFiles/Day1/input.txt"), step).ToString());
                 }
 
                 else if (day == 2)
                 {
-                    submarine.NavigateFromInput(FileReader.FileToNavigationList("InputFiles/Day2/Day2.txt"), step);
+                    submarine.NavigateFromInput(_reader.FileToNavigationList("InputFiles/Day2/Day2.txt"), step);
                     result = submarine.GetPosition().ToString();
                 }
                 Console.WriteLine(result);

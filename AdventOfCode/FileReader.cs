@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode
 {
-    public class FileReader
+    public class FileReader: IReader
     {
-        public static List<string> FileToStringList(string filePath)
+        public List<string> FileToStringList(string filePath)
         {
             List<string> result = new List<string>();
 
@@ -19,7 +19,7 @@ namespace AdventOfCode
             return result;
         }
 
-        public static List<int> FileToIntList(string filePath)
+        public List<int> FileToIntList(string filePath)
         {
             List<int> result = new List<int>();
 
@@ -30,7 +30,7 @@ namespace AdventOfCode
             return result;
         }
 
-        public static List<NavigationInput> FileToNavigationList(string filePath)
+        public List<NavigationInput> FileToNavigationList(string filePath)
         {
 
             var List = System.IO.File.ReadLines(filePath).Select(line => new NavigationInput{ Direction = line.Substring(0, line.IndexOf(" ")), Amount = int.Parse(line.Substring(line.IndexOf(" ") + 1)) }).ToList();
@@ -38,5 +38,12 @@ namespace AdventOfCode
 
             return List;
         }
+    }
+
+    public interface IReader
+    {
+        List<string> FileToStringList(string filePath);
+        List<int> FileToIntList(string filePath);
+        List<NavigationInput> FileToNavigationList(string filePath);
     }
 }

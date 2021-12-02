@@ -6,6 +6,7 @@ namespace UnitTests
     [TestClass]
     public class UnitTest1
     {
+        IReader FileReader = new FileReader();
         [TestMethod]
         public void Day1Step1()
         {
