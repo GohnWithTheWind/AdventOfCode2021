@@ -1,5 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AdventOfCode;
+using AdventOfCode.Interfaces;
+using AdventOfCode.Infrastructure;
 
 namespace UnitTests
 {

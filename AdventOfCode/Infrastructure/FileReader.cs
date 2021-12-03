@@ -1,10 +1,11 @@
-﻿using System;
+﻿using AdventOfCode.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventOfCode
+namespace AdventOfCode.Infrastructure
 {
     public class FileReader: IReader
     {
@@ -38,12 +39,5 @@ namespace AdventOfCode
 
             return List;
         }
-    }
-
-    public interface IReader
-    {
-        List<string> FileToStringList(string filePath);
-        List<int> FileToIntList(string filePath);
-        List<NavigationInput> FileToNavigationList(string filePath);
     }
 }

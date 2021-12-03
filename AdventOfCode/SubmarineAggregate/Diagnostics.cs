@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AdventOfCode.Interfaces;
 
 namespace AdventOfCode
 {
@@ -72,7 +73,6 @@ namespace AdventOfCode
 
                 pos++;
             }
-
             OxygenGeneratorRating = Convert.ToInt32(oxygenReadings[0], 2);
 
             List<string> scrubberReadings = new List<string>(readings);
