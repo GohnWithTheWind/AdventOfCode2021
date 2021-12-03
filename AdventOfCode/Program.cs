@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using AdventOfCode.Infrastructure;
 using AdventOfCode.Interfaces;
+using AdventOfCode.Repository;
 
 namespace AdventOfCode
 {
@@ -8,11 +9,13 @@ namespace AdventOfCode
     {
         static void Main(string[] args)
         {
-            var serviceProvider = new ServiceCollection()
-                .AddSingleton<IReader, FileReader>()
-                .BuildServiceProvider();
 
-            IReader _reader = serviceProvider.GetRequiredService<IReader>();
+
+            var serviceProvider = new ServiceCollection()
+           .AddSingleton<IRepository, Repository.Repository>()
+           .BuildServiceProvider();
+
+            IRepository _repository = serviceProvider.GetRequiredService<IRepository>();
 
             Submarine submarine = new Submarine();
 
@@ -44,18 +47,18 @@ namespace AdventOfCode
                 if (day == 1)
                 {
                     result = string.Format("Descentspeed: {0}.", submarine.Sonar.CalculateDescentSpeed(
-                        _reader.FileToIntList("InputFiles/Day1/input.txt"), step).ToString());
+                        _repository.GetDescentData(), step).ToString());
                 }
 
                 else if (day == 2)
                 {
-                    submarine.NavigateFromInput(_reader.FileToNavigationList("InputFiles/Day2/Day2.txt"), step);
+                    submarine.NavigateFromInput(_repository.GetNavigationData(), step);
                     result = submarine.GetPosition().ToString();
                 }
                 else if (day == 3)
                 {
-                    submarine.Diagnostics.ReadPowerConsumptionStream(_reader, "InputFiles/Day3/Day3.txt");
-                    submarine.Diagnostics.ReadOxygenStream(_reader, "InputFiles/Day3/Day3.txt");
+                    submarine.Diagnostics.ReadPowerConsumptionStream(_repository.GetDiagnosticsData());
+                    submarine.Diagnostics.ReadOxygenStream(_repository.GetDiagnosticsData());
                     result = string.Format("Current diagnostics readings: {0}.", submarine.Diagnostics.ToString());
                 }
                 Console.WriteLine(result);

@@ -28,10 +28,8 @@ namespace AdventOfCode
             GammaRate = gammaRate;
             EpsilonRate = epsilonRate;
         }
-        public void ReadPowerConsumptionStream(IReader data, string path)
+        public void ReadPowerConsumptionStream(List<string> readings)
         {
-            List<string> readings = data.FileToStringList(path);
-
             int numOfRows = readings.Count();
             int numOfPositions = readings[1].Length;
             string gammaString = "";
@@ -53,9 +51,8 @@ namespace AdventOfCode
             EpsilonRate = Convert.ToInt32(epsilonString, 2);
         }
 
-        public void ReadOxygenStream(IReader data, string path)
+        public void ReadOxygenStream(List<string> readings)
         {
-            List<string> readings = data.FileToStringList(path);
 
             int numOfPositions = readings[1].Length;
 

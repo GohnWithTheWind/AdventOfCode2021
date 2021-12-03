@@ -2,19 +2,21 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AdventOfCode;
 using AdventOfCode.Interfaces;
 using AdventOfCode.Infrastructure;
+using AdventOfCode.Repository;
 
 namespace UnitTests
 {
     [TestClass]
-    public class UnitTest1
+    public class SubmarineTests
     {
-        IReader FileReader = new FileReader();
+        IRepository _repository = new TestRepository();
+
         [TestMethod]
         public void Day1Step1()
         {
             Submarine submarine = new Submarine();
 
-            int result = submarine.Sonar.CalculateDescentSpeed(FileReader.FileToIntList("InputFiles/Day1/Day1Tests.txt"), 1);
+            int result = submarine.Sonar.CalculateDescentSpeed(_repository.GetDescentData(), 1);
 
             Assert.AreEqual(7, result);
         }
@@ -24,7 +26,7 @@ namespace UnitTests
         {
             Submarine submarine = new Submarine();
 
-            int result = submarine.Sonar.CalculateDescentSpeed(FileReader.FileToIntList("InputFiles/Day1/Day1Tests.txt"), 2);
+            int result = submarine.Sonar.CalculateDescentSpeed(_repository.GetDescentData(), 2);
 
             Assert.AreEqual(5, result);
         }
@@ -34,7 +36,7 @@ namespace UnitTests
         {
             Submarine submarine = new Submarine();
 
-            submarine.NavigateFromInput(FileReader.FileToNavigationList("InputFiles/Day2/Day2Tests.txt"), 1);
+            submarine.NavigateFromInput(_repository.GetNavigationData(), 1);
 
             Assert.AreEqual(150, submarine.GetPosition().PositionHash);
         }
@@ -44,7 +46,7 @@ namespace UnitTests
         {
             Submarine submarine = new Submarine();
 
-            submarine.NavigateFromInput(FileReader.FileToNavigationList(@"InputFiles/Day2/Day2Tests.txt"), 2);
+            submarine.NavigateFromInput(_repository.GetNavigationData(), 2);
 
             Assert.AreEqual(900, submarine.GetPosition().PositionHash);
         }
@@ -53,7 +55,7 @@ namespace UnitTests
         {
             Submarine submarine = new Submarine();
 
-            submarine.Diagnostics.ReadPowerConsumptionStream(FileReader, "InputFiles/Day3/Day3Tests.txt");
+            submarine.Diagnostics.ReadPowerConsumptionStream(_repository.GetDiagnosticsData());
 
             var read = submarine.Diagnostics.PowerConsumption;
 
@@ -65,7 +67,7 @@ namespace UnitTests
         {
             Submarine submarine = new Submarine();
 
-            submarine.Diagnostics.ReadOxygenStream(FileReader, "InputFiles/Day3/Day3Tests.txt");
+            submarine.Diagnostics.ReadOxygenStream(_repository.GetDiagnosticsData());
 
             var read = submarine.Diagnostics.LifeSupportRating;
 
