@@ -50,6 +50,12 @@ namespace AdventOfCode
                     submarine.NavigateFromInput(_reader.FileToNavigationList("InputFiles/Day2/Day2.txt"), step);
                     result = submarine.GetPosition().ToString();
                 }
+                else if (day == 3)
+                {
+                    submarine.Diagnostics.ReadPowerConsumptionStream(_reader, "InputFiles/Day3/Day3.txt");
+                    submarine.Diagnostics.ReadOxygenStream(_reader, "InputFiles/Day3/Day3.txt");
+                    result = string.Format("Current diagnostics readings: {0}.", submarine.Diagnostics.ToString());
+                }
                 Console.WriteLine(result);
 
                 Console.Write("Type Exit to exit or hit enter to go again.");

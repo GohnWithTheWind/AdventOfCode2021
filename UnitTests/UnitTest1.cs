@@ -46,6 +46,30 @@ namespace UnitTests
 
             Assert.AreEqual(900, submarine.GetPosition().PositionHash);
         }
+        [TestMethod]
+        public void Day3Step1()
+        {
+            Submarine submarine = new Submarine();
+
+            submarine.Diagnostics.ReadPowerConsumptionStream(FileReader, "InputFiles/Day3/Day3Tests.txt");
+
+            var read = submarine.Diagnostics.PowerConsumption;
+
+            Assert.AreEqual(198, read);
+        }
+
+        [TestMethod]
+        public void Day3Step2()
+        {
+            Submarine submarine = new Submarine();
+
+            submarine.Diagnostics.ReadOxygenStream(FileReader, "InputFiles/Day3/Day3Tests.txt");
+
+            var read = submarine.Diagnostics.LifeSupportRating;
+
+            Assert.AreEqual(230, read);
+        }
+        
 
     }
 }
