@@ -8,15 +8,20 @@ namespace AdventOfCode.SubmarineAggregate
 {
     public class Bingo
     {
-        public List<int> DrawnNumbers { get; set; }
-        public List<BingoBoard> Boards { get; set; }
+        private List<int> DrawnNumbers { get; set; }
+        private List<BingoBoard> Boards { get; set; }
 
-        public Bingo(List<int> drawnNumbers, List<BingoBoard> boards)
+        public Bingo()
+        {
+            Boards = new List<BingoBoard>();
+            DrawnNumbers = new List<int>();
+        }
+
+        public void InitializeBingo(List<int> drawnNumbers, List<BingoBoard> boards)
         {
             Boards = boards;
             DrawnNumbers = drawnNumbers;
         }
-
 
         public BingoBoard GetWinner()
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdventOfCode.SubmarineAggregate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,12 @@ namespace AdventOfCode
         private static Position StartPosition = new Position();
         private static Sonar StartSonar = new Sonar();
         private static Diagnostics StartDiagnostics = new Diagnostics(0,0);
+        private static Bingo StartBingo = new Bingo();
 
         private Position Position { get; set; }
         private Navigation Navigation { get; set; }
+
+        public readonly Bingo Bingo;
 
         public readonly Sonar Sonar;
 
@@ -25,6 +29,7 @@ namespace AdventOfCode
             Sonar = StartSonar;
             Navigation = new Navigation();
             Diagnostics = StartDiagnostics;
+            Bingo = StartBingo;
         }
 
         public Position GetPosition()

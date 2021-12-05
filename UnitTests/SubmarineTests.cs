@@ -78,15 +78,17 @@ namespace UnitTests
         [TestMethod]
         public void Day4Step1()
         {
-            Bingo bingo = new Bingo(_repository.GetDrawnBingoNumbers(), _repository.GetBingoBoards());
-            var winningBoard = bingo.GetWinner();
+            Submarine submarine = new Submarine();
+            submarine.Bingo.InitializeBingo(_repository.GetDrawnBingoNumbers(), _repository.GetBingoBoards());
+            var winningBoard = submarine.Bingo.GetWinner();
             Assert.AreEqual(4512, winningBoard.Score);
         }
         [TestMethod]
         public void Day4Step2()
         {
-            Bingo bingo = new Bingo(_repository.GetDrawnBingoNumbers(), _repository.GetBingoBoards());
-            var losingBoard = bingo.GetLoser();
+            Submarine submarine = new Submarine();
+            submarine.Bingo.InitializeBingo(_repository.GetDrawnBingoNumbers(), _repository.GetBingoBoards());
+            var losingBoard = submarine.Bingo.GetLoser();
             Assert.AreEqual(1924, losingBoard.Score);
         }
         [TestMethod]

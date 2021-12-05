@@ -64,11 +64,11 @@ namespace AdventOfCode
                 }
                 else if (day == 4)
                 {
-                    Bingo bingo = new Bingo(_repository.GetDrawnBingoNumbers(), _repository.GetBingoBoards());
-                    if(step == 1)
-                    result = string.Format("The winner board is: {0}", bingo.GetWinner().ToString());
+                    submarine.Bingo.InitializeBingo(_repository.GetDrawnBingoNumbers(), _repository.GetBingoBoards());
+                    if (step == 1)
+                    result = string.Format("The winner board is: {0}", submarine.Bingo.GetWinner().ToString());
                     else if(step == 2)
-                        result = string.Format("The winner board is: {0}", bingo.GetLoser().ToString());
+                        result = string.Format("The winner board is: {0}", submarine.Bingo.GetLoser().ToString());
                 }
                 else if(day == 5)
                 {
