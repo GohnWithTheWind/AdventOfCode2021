@@ -1,5 +1,6 @@
 ﻿using AdventOfCode.Infrastructure;
 using AdventOfCode.Interfaces;
+using AdventOfCode.SubmarineAggregate;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,15 @@ namespace AdventOfCode.Repository
         public List<string> GetDiagnosticsData()
         {
             return  _reader.FileToStringList("InputFiles/Day3/Day3Tests.txt");
+        }
+
+        public List<int> GetDrawnBingoNumbers()
+        {
+            return _reader.FirstRowToIntList("InputFiles/Day4/Day4Tests.txt");
+        }
+        public List<BingoBoard> GetBingoBoards()
+        {
+            return _reader.FileToBingoBoards("InputFiles/Day4/Day4Tests.txt");
         }
 
 

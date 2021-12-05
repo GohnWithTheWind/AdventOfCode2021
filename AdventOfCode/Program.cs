@@ -2,6 +2,7 @@
 using AdventOfCode.Infrastructure;
 using AdventOfCode.Interfaces;
 using AdventOfCode.Repository;
+using AdventOfCode.SubmarineAggregate;
 
 namespace AdventOfCode
 {
@@ -60,6 +61,14 @@ namespace AdventOfCode
                     submarine.Diagnostics.ReadPowerConsumptionStream(_repository.GetDiagnosticsData());
                     submarine.Diagnostics.ReadOxygenStream(_repository.GetDiagnosticsData());
                     result = string.Format("Current diagnostics readings: {0}.", submarine.Diagnostics.ToString());
+                }
+                else if (day == 4)
+                {
+                    Bingo bingo = new Bingo(_repository.GetDrawnBingoNumbers(), _repository.GetBingoBoards());
+                    if(step == 1)
+                    result = string.Format("The winner board is: {0}", bingo.GetWinner().ToString());
+                    else if(step == 2)
+                        result = string.Format("The winner board is: {0}", bingo.GetLoser().ToString());
                 }
                 Console.WriteLine(result);
 

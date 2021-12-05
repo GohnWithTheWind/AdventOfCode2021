@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdventOfCode.SubmarineAggregate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,7 @@ namespace AdventOfCode.Interfaces
         List<int> GetDescentData();
         List<NavigationInput> GetNavigationData();
         List<string> GetDiagnosticsData();
+        List<int> GetDrawnBingoNumbers();
+        List<BingoBoard> GetBingoBoards();
     }
 }

@@ -3,6 +3,7 @@ using AdventOfCode;
 using AdventOfCode.Interfaces;
 using AdventOfCode.Infrastructure;
 using AdventOfCode.Repository;
+using AdventOfCode.SubmarineAggregate;
 
 namespace UnitTests
 {
@@ -73,7 +74,22 @@ namespace UnitTests
 
             Assert.AreEqual(230, read);
         }
-        
+
+        [TestMethod]
+        public void Day4Step1()
+        {
+            Bingo bingo = new Bingo(_repository.GetDrawnBingoNumbers(), _repository.GetBingoBoards());
+            var winningBoard = bingo.GetWinner();
+            Assert.AreEqual(4512, winningBoard.Score);
+        }
+        [TestMethod]
+        public void Day4Step2()
+        {
+            Bingo bingo = new Bingo(_repository.GetDrawnBingoNumbers(), _repository.GetBingoBoards());
+            var losingBoard = bingo.GetLoser();
+            Assert.AreEqual(1924, losingBoard.Score);
+        }
+
 
     }
 }
