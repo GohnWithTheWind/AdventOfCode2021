@@ -22,7 +22,7 @@ namespace AdventOfCode
                 {
                     while (currentX <= range.EndX)
                     {
-                        coordinates.Add(new Coordinate(currentX, currentY, 1));
+                        coordinates.Add(new Coordinate(currentX, currentY));
                         currentX++;
                     }
                 }
@@ -30,17 +30,16 @@ namespace AdventOfCode
                 {
                     while (currentY <= range.EndY && range.StartX == range.EndX)
                     {
-                        coordinates.Add(new Coordinate(currentX, currentY, 1));
+                        coordinates.Add(new Coordinate(currentX, currentY));
 
                         currentY++;
                     }
                 }
                 else
                 {
-                    int distance = Math.Abs(range.StartX - range.EndX);
                     while(currentX <= range.EndX)
                     {
-                        coordinates.Add(new Coordinate(currentX, currentY, 1));
+                        coordinates.Add(new Coordinate(currentX, currentY));
 
                         if(currentY > range.EndY)
                         {
@@ -124,13 +123,11 @@ namespace AdventOfCode
     {
         public int X { get; set; } 
         public int Y { get; set; }
-        public int Occurences { get; set; } 
 
-        public Coordinate(int x, int y, int occurences)
+        public Coordinate(int x, int y)
         {
             X = x;
-            Y = y;
-            Occurences = occurences;   
+            Y = y;  
         }
     }
 }
