@@ -89,7 +89,20 @@ namespace UnitTests
             var losingBoard = bingo.GetLoser();
             Assert.AreEqual(1924, losingBoard.Score);
         }
-
+        [TestMethod]
+        public void Day5Step1()
+        {   
+            Submarine submarine = new Submarine();
+            var res = submarine.Sonar.GetNumOfDangerAreas(_repository.GetVentRanges(0));
+            Assert.AreEqual(5, res);
+        }
+        [TestMethod]
+        public void Day5Step2()
+        {
+            Submarine submarine = new Submarine();
+            var res = submarine.Sonar.GetNumOfDangerAreas(_repository.GetVentRanges(1));
+            Assert.AreEqual(12, res);
+        }
 
     }
 }

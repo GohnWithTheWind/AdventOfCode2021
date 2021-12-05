@@ -14,5 +14,6 @@ namespace AdventOfCode.Interfaces
         List<string> GetDiagnosticsData();
         List<int> GetDrawnBingoNumbers();
         List<BingoBoard> GetBingoBoards();
+        List<VentRange> GetVentRanges(int includeDiagonal);
     }
 }

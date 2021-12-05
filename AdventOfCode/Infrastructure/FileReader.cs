@@ -105,5 +105,53 @@ namespace AdventOfCode.Infrastructure
             }
             return boards;
         }
+
+        public List<VentRange> FileToVentRanges(string filePath, int includeDiagonal = 0)
+        {
+            var file = System.IO.File.ReadLines(filePath);
+            List<VentRange> ventRanges = new List<VentRange>();
+           
+            int startX;
+            int startY;
+            int endX;
+            int endY;
+            foreach (var l in file)
+            {
+                var ranges = l.Split("->", StringSplitOptions.RemoveEmptyEntries).Select(x => x.Split(',').Select(Int32.Parse).ToList());
+
+                startX = ranges.ToList()[0][0];
+                startY = ranges.ToList()[0][1];
+                endX = ranges.ToList()[1][0];
+                endY = ranges.ToList()[1][1];
+
+                if(startX == endX || startY == endY)
+                {
+                    if (startX < endX || startY < endY)
+                    {
+                        ventRanges.Add(new VentRange(startX, startY, endX, endY));
+                    }
+                    else
+                    {
+                        ventRanges.Add(new VentRange(endX, endY, startX, startY));
+                    }
+                }
+                else if(includeDiagonal == 1)
+                {
+                    if (Math.Abs(startX - endX) == Math.Abs(startY - endY))
+                    {
+                        if (startX < endX)
+                        {
+                            ventRanges.Add(new VentRange(startX, startY, endX, endY));
+                        }
+                        else
+                        {
+                            ventRanges.Add(new VentRange(endX, endY, startX, startY));
+                        }
+                    }
+                }
+
+            }
+            return ventRanges;
+        }
     }
 }

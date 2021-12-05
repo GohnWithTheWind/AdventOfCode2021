@@ -70,6 +70,13 @@ namespace AdventOfCode
                     else if(step == 2)
                         result = string.Format("The winner board is: {0}", bingo.GetLoser().ToString());
                 }
+                else if(day == 5)
+                {
+                    if(step == 1)
+                        result = string.Format("Number of danger areas: {0}.", submarine.Sonar.GetNumOfDangerAreas(_repository.GetVentRanges(0)));
+                    else if (step == 2)
+                        result = string.Format("Number of danger areas: {0}.", submarine.Sonar.GetNumOfDangerAreas(_repository.GetVentRanges(1)));
+                }
                 Console.WriteLine(result);
 
                 Console.Write("Type Exit to exit or hit enter to go again.");

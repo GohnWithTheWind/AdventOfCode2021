@@ -45,6 +45,10 @@ namespace AdventOfCode.Repository
         {
             return _reader.FileToBingoBoards("InputFiles/Day4/Day4.txt");
         }
+        public List<VentRange> GetVentRanges(int includeDiagonal)
+        {
+            return _reader.FileToVentRanges("InputFiles/Day5/Day5.txt", includeDiagonal);
+        }
 
 
     }
