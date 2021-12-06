@@ -50,6 +50,11 @@ namespace AdventOfCode.Repository
             return _reader.FileToVentRanges("InputFiles/Day5/Day5Tests.txt", includeDiagonal);
         }
 
+        public List<int> GetLanternFishColony()
+        {
+            return _reader.FirstRowToIntList("InputFiles/Day6/Day6Tests.txt");
+        }
+
 
     }
 }

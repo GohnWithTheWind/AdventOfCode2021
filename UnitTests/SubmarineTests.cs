@@ -106,5 +106,20 @@ namespace UnitTests
             Assert.AreEqual(12, res);
         }
 
+        [TestMethod]
+        public void Day6Step1()
+        {
+            Submarine submarine = new Submarine();
+            var res = submarine.Oceanography.SimulateLanternFishGrowth(_repository.GetLanternFishColony(), 80);
+            Assert.AreEqual(5934, res);
+        }
+        [TestMethod]
+        public void Day6Step2()
+        {
+            Submarine submarine = new Submarine();
+            var res = submarine.Oceanography.SimulateLanternFishGrowth(_repository.GetLanternFishColony(), 256);
+            Assert.AreEqual(26984457539, res);
+        }
+
     }
 }

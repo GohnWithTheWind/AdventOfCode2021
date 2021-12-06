@@ -77,6 +77,14 @@ namespace AdventOfCode
                     else if (step == 2)
                         result = string.Format("Number of danger areas: {0}.", submarine.Sonar.GetNumOfDangerAreas(_repository.GetVentRanges(1)));
                 }
+                else if(day == 6)
+                {
+                    if(step == 1)
+                    result = string.Format("Number of fishies after 80 days: {0}.",submarine.Oceanography.SimulateLanternFishGrowth(_repository.GetLanternFishColony(), 80).ToString());
+                    else if(step==2)
+                        result = string.Format("Number of fishies after 256 days: {0}.", submarine.Oceanography.SimulateLanternFishGrowth(_repository.GetLanternFishColony(), 256).ToString());
+
+                }
                 Console.WriteLine(result);
 
                 Console.Write("Type Exit to exit or hit enter to go again.");

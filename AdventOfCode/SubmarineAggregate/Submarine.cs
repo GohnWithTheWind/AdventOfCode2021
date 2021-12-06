@@ -13,6 +13,7 @@ namespace AdventOfCode
         private static Sonar StartSonar = new Sonar();
         private static Diagnostics StartDiagnostics = new Diagnostics(0,0);
         private static Bingo StartBingo = new Bingo();
+        private static Oceanography StartOceanography = new Oceanography();
 
         private Position Position { get; set; }
         private Navigation Navigation { get; set; }
@@ -22,6 +23,7 @@ namespace AdventOfCode
         public readonly Sonar Sonar;
 
         public readonly Diagnostics Diagnostics;
+        public readonly Oceanography Oceanography;
 
         public Submarine()
         {
@@ -30,6 +32,7 @@ namespace AdventOfCode
             Navigation = new Navigation();
             Diagnostics = StartDiagnostics;
             Bingo = StartBingo;
+            Oceanography = StartOceanography;
         }
 
         public Position GetPosition()
