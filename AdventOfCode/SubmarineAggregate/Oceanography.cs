@@ -19,11 +19,11 @@ namespace AdventOfCode.SubmarineAggregate
             {
                 fishCount.Where(col => col.DaysFromBirthing == f).First().NumOfFish++;
             }
-            var res = CalculateDailFishGrowth(fishCount, numOfDays);
+            var res = CalculateDailyFishGrowth(fishCount, numOfDays);
             return res.Select(r => r.NumOfFish).Sum();
         }
 
-        private List<FishGroup> CalculateDailFishGrowth(List<FishGroup> fishies, int numOfDays)
+        private List<FishGroup> CalculateDailyFishGrowth(List<FishGroup> fishies, int numOfDays)
         {
             if (numOfDays == 0)
             {
@@ -33,30 +33,17 @@ namespace AdventOfCode.SubmarineAggregate
             List<FishGroup> fishGroups = new List<FishGroup>();
             foreach (var item in fishies)
             {
-                fishGroups.Add(new FishGroup(item.DaysFromBirthing, item.NumOfFish));
-            }
-            foreach (var fish in fishies)
-            {
-                if (fish.NumOfFish > 0)
-                {           
-                    if (fish.DaysFromBirthing == 0)
-                    {
-                        var newPos = fishGroups.Where(f => f.DaysFromBirthing == 6).First();
-                        newPos.NumOfFish = newPos.NumOfFish + fish.NumOfFish;
-                        // happy birthday lil fishy
-                        var newFish = fishGroups.Where(f => f.DaysFromBirthing == 8).First();
-                        newFish.NumOfFish = newFish.NumOfFish + fish.NumOfFish;
-                    }
-                    else
-                    {
-                        var newPos = fishGroups.Where(f => f.DaysFromBirthing == fish.DaysFromBirthing - 1).First();
-                        newPos.NumOfFish = newPos.NumOfFish + fish.NumOfFish;
-                    }
-                    var currentPos = fishGroups.Where(f => f.DaysFromBirthing == fish.DaysFromBirthing).First();
-                    currentPos.NumOfFish = currentPos.NumOfFish - fish.NumOfFish;
+                if(item.DaysFromBirthing == 0)
+                {
+                    fishGroups.Add(new FishGroup(8, item.NumOfFish));
+                    fishGroups.Add(new FishGroup(6, item.NumOfFish + fishies.Where(f => f.DaysFromBirthing == 7).Select(s => s.NumOfFish).First()));
+                }
+                else if(item.DaysFromBirthing != 7)
+                {
+                    fishGroups.Add(new FishGroup(item.DaysFromBirthing - 1, item.NumOfFish));
                 }
             }
-            return CalculateDailFishGrowth(fishGroups, numOfDays - 1);
+            return CalculateDailyFishGrowth(fishGroups, numOfDays - 1);
         }
 
 
@@ -74,3 +61,5 @@ namespace AdventOfCode.SubmarineAggregate
 
     }
 }
+
+
