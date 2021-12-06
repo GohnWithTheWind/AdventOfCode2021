@@ -10,7 +10,7 @@ namespace AdventOfCode
     {
         public Position NavigateFromInput(List<NavigationInput> input, int navigationVersion)
         {
-            Position position = new Position();
+            Position position = new();
 
             if (navigationVersion == 1)
             {
@@ -23,9 +23,9 @@ namespace AdventOfCode
             return position;
         }
 
-        private Position NavigationVersionOne(List<NavigationInput> input)
+        private static Position NavigationVersionOne(List<NavigationInput> input)
         {
-            Position position = new Position();
+            Position position = new();
             position.Y = input.Select(t => t.Direction == "down" ? t.Amount : t.Direction == "up" ? t.Amount * -1 : 0).Sum();
             position.X = input.Where(t => t.Direction == "forward").Select(t => t.Amount).Sum();
             return position;
@@ -33,7 +33,7 @@ namespace AdventOfCode
 
         private Position NavigationVersionTwo(List<NavigationInput> input)
         {
-            Position position = new Position();
+            Position position = new();
             int y = 0;
             int x = 0;
             int aim = 0;
@@ -42,14 +42,14 @@ namespace AdventOfCode
                 switch (i.Direction)
                 {
                     case "down":
-                        aim = aim + i.Amount;
+                        aim += i.Amount;
                         break;
                     case "up":
-                        aim = aim - i.Amount;
+                        aim -= i.Amount;
                         break;
                     case "forward":
-                        x = x + i.Amount;
-                        y = y + (aim * i.Amount);
+                        x += i.Amount;
+                        y += (aim * i.Amount);
                         break;
                     default:
                         break;
@@ -64,6 +64,11 @@ namespace AdventOfCode
 
     public class NavigationInput
     {
+        public NavigationInput(string direction, int amount)
+        {
+            Amount = amount;
+            Direction = direction;
+        }
         public int Amount { get; set; }
         public string Direction { get; set; }
     }

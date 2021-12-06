@@ -9,11 +9,11 @@ namespace AdventOfCode
 {
     public class Submarine
     {
-        private static Position StartPosition = new Position();
-        private static Sonar StartSonar = new Sonar();
-        private static Diagnostics StartDiagnostics = new Diagnostics(0,0);
-        private static Bingo StartBingo = new Bingo();
-        private static Oceanography StartOceanography = new Oceanography();
+        private static readonly Position StartPosition = new();
+        private static readonly Sonar StartSonar = new();
+        private static readonly Diagnostics StartDiagnostics = new(0,0);
+        private static readonly Bingo StartBingo = new();
+        private static readonly Oceanography StartOceanography = new();
 
         private Position Position { get; set; }
         private Navigation Navigation { get; set; }

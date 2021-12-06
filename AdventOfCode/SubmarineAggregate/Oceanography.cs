@@ -10,7 +10,7 @@ namespace AdventOfCode.SubmarineAggregate
     {
         public long SimulateLanternFishGrowth(List<int> fishColony, int numOfDays)
         {
-            List<FishGroup> fishCount = new List<FishGroup>();
+            List<FishGroup> fishCount = new();
             for(int i = 0; i < 9; i++)
             {
                 fishCount.Add(new FishGroup(i, 0));
@@ -30,7 +30,7 @@ namespace AdventOfCode.SubmarineAggregate
                 return fishies;
             }
 
-            List<FishGroup> fishGroups = new List<FishGroup>();
+            List<FishGroup> fishGroups = new();
             foreach (var item in fishies)
             {
                 if(item.DaysFromBirthing == 0)

@@ -12,7 +12,7 @@ namespace AdventOfCode.Infrastructure
     {
         public List<string> FileToStringList(string filePath)
         {
-            List<string> result = new List<string>();
+            List<string> result = new();
 
             foreach (string line in System.IO.File.ReadLines(filePath))
             {
@@ -23,7 +23,7 @@ namespace AdventOfCode.Infrastructure
 
         public List<int> FileToIntList(string filePath)
         {
-            List<int> result = new List<int>();
+            List<int> result = new();
 
             foreach (string line in System.IO.File.ReadLines(filePath))
             {
@@ -35,7 +35,7 @@ namespace AdventOfCode.Infrastructure
         public List<NavigationInput> FileToNavigationList(string filePath)
         {
 
-            var List = System.IO.File.ReadLines(filePath).Select(line => new NavigationInput{ Direction = line.Substring(0, line.IndexOf(" ")), Amount = int.Parse(line.Substring(line.IndexOf(" ") + 1)) }).ToList();
+            var List = System.IO.File.ReadLines(filePath).Select(line => new NavigationInput(line[..line.IndexOf(" ")],  int.Parse(line[(line.IndexOf(" ") + 1)..]))).ToList();
 
 
             return List;
@@ -43,7 +43,7 @@ namespace AdventOfCode.Infrastructure
 
         public List<int> FirstRowToIntList(string filePath)
         {
-            List<int> result = new List<int>();
+            List<int> result = new();
 
             var file = System.IO.File.ReadLines(filePath);
             int pos = 0;
@@ -64,10 +64,10 @@ namespace AdventOfCode.Infrastructure
 
             int fileLen = file.Count();
 
-            List<BingoBoard> boards = new List<BingoBoard>();
+            List<BingoBoard> boards = new();
 
             int boardNo = 1;
-            BingoBoard board = new BingoBoard("Board " + boardNo.ToString());
+            BingoBoard board = new("Board " + boardNo.ToString());
             int pos = 0;
             int matrixRow = 0;
 
@@ -88,7 +88,6 @@ namespace AdventOfCode.Infrastructure
                 }
                 else
                 {
-                    var split = l.Split(new char[0]);
                     var rowNumbers = l.Split(new char[0], StringSplitOptions.RemoveEmptyEntries).Select(Int32.Parse).ToList();
 
                     for (int i = 0; i < rowNumbers.Count; i++)
@@ -109,7 +108,7 @@ namespace AdventOfCode.Infrastructure
         public List<VentRange> FileToVentRanges(string filePath, int includeDiagonal = 0)
         {
             var file = System.IO.File.ReadLines(filePath);
-            List<VentRange> ventRanges = new List<VentRange>();
+            List<VentRange> ventRanges = new();
            
             int startX;
             int startY;

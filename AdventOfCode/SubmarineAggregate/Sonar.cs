@@ -11,7 +11,7 @@ namespace AdventOfCode
 
         public int GetNumOfDangerAreas(List<VentRange> ventRanges)
         {
-            List<Coordinate> coordinates = new List<Coordinate>();
+            List<Coordinate> coordinates = new();
 
             foreach(VentRange range in ventRanges)
             {

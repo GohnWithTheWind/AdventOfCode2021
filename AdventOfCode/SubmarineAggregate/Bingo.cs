@@ -39,14 +39,14 @@ namespace AdventOfCode.SubmarineAggregate
                 }
                 var winningBoard = CheckForWinner();
                 {
-                    if (winningBoard != null)
+                    if (winningBoard.BoardName != "")
                     {
                         winningBoard.Score = (from BingoNumber num in winningBoard.Matrix where num.IsChecked == false select num.Number).Sum() * drawnNum;
                         return winningBoard;
                     }
                 }
             }
-            return null;
+            return BingoBoard.NotFound; ;
         }
 
         public BingoBoard GetLoser()
@@ -71,7 +71,7 @@ namespace AdventOfCode.SubmarineAggregate
                     }
                 }
             }
-            return null;
+            return BingoBoard.NotFound;
         }
 
         public BingoBoard CheckForWinner()
@@ -90,7 +90,7 @@ namespace AdventOfCode.SubmarineAggregate
                     }
                 }
             }
-            return null;
+            return BingoBoard.NotFound;
         }
 
         public List<BingoBoard> MarkWinners(List<BingoBoard> boards, int drawnNum)
@@ -130,6 +130,7 @@ namespace AdventOfCode.SubmarineAggregate
             IsWinner = false;
             Score = 0;
         }
+        internal static BingoBoard NotFound = new("");
 
         public override string ToString()
         {
@@ -151,5 +152,6 @@ namespace AdventOfCode.SubmarineAggregate
             PosX = posX;
             PosY = posY;
         }
+
     }
 }

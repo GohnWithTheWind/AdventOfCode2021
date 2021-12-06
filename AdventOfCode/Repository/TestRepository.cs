@@ -12,7 +12,7 @@ namespace AdventOfCode.Repository
 {
     public class TestRepository : IRepository
     {
-        private IReader _reader;
+        private readonly IReader _reader;
 
         public TestRepository()
         {

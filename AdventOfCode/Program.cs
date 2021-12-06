@@ -8,7 +8,7 @@ namespace AdventOfCode
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
 
 
@@ -18,25 +18,23 @@ namespace AdventOfCode
 
             IRepository _repository = serviceProvider.GetRequiredService<IRepository>();
 
-            Submarine submarine = new Submarine();
+            Submarine submarine = new();
 
             bool exit = false;
 
             while (exit == false)
             {
                 Console.Write("Enter day (int):");
-                int day;
-                int step;
 
-                bool isNumeric = int.TryParse(Console.ReadLine(), out day);
-                while(!isNumeric)
+                bool isNumeric = int.TryParse(Console.ReadLine(), out int day);
+                while (!isNumeric)
                 {
                     Console.Write("Not an int. Enter day (int):");
                     isNumeric = int.TryParse(Console.ReadLine(), out day);
                 }
 
                 Console.Write("Enter step:");
-                isNumeric = int.TryParse(Console.ReadLine(), out step);
+                isNumeric = int.TryParse(Console.ReadLine(), out int step);
                 while (!isNumeric)
                 {
                     Console.Write("Not an int. Enter step (int):");

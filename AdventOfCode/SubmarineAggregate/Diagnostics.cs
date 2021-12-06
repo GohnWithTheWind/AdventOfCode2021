@@ -30,7 +30,7 @@ namespace AdventOfCode
         }
         public void ReadPowerConsumptionStream(List<string> readings)
         {
-            int numOfRows = readings.Count();
+            int numOfRows = readings.Count;
             int numOfPositions = readings[1].Length;
             string gammaString = "";
             string epsilonString = "";
@@ -56,7 +56,7 @@ namespace AdventOfCode
 
             int numOfPositions = readings[1].Length;
 
-            List<string> oxygenReadings = new List<string>(readings);
+            List<string> oxygenReadings = new(readings);
 
             int pos = 0;
 
@@ -64,7 +64,7 @@ namespace AdventOfCode
             {
                 int oneSum = oxygenReadings.Where(o => o.Substring(pos, 1) == "1").Count();
 
-                string stringToKeep = oneSum >= (decimal)oxygenReadings.Count() / 2 ? "1" : "0";
+                string stringToKeep = oneSum >= (decimal)oxygenReadings.Count / 2 ? "1" : "0";
 
                 oxygenReadings.RemoveAll(o => o.Substring(pos, 1) != stringToKeep);
 
@@ -72,7 +72,7 @@ namespace AdventOfCode
             }
             OxygenGeneratorRating = Convert.ToInt32(oxygenReadings[0], 2);
 
-            List<string> scrubberReadings = new List<string>(readings);
+            List<string> scrubberReadings = new(readings);
 
             pos = 0;
 
@@ -80,7 +80,7 @@ namespace AdventOfCode
             {
                 int oneSum = scrubberReadings.Where(o => o.Substring(pos, 1) == "1").Count();
 
-                string stringToKeep = oneSum < (decimal)scrubberReadings.Count() / 2 ? "1" : "0";
+                string stringToKeep = oneSum < (decimal)scrubberReadings.Count / 2 ? "1" : "0";
 
                 scrubberReadings.RemoveAll(o => o.Substring(pos, 1) != stringToKeep);
 
