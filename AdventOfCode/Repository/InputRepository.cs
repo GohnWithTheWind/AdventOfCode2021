@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode.Repository
 {
-    public class Repository : IRepository
+    public class InputRepository : IRepository
     {
         private readonly IReader _reader;
 
-        public Repository()
+        public InputRepository()
         {
             var serviceProvider = new ServiceCollection()
             .AddSingleton<IReader, FileReader>()
