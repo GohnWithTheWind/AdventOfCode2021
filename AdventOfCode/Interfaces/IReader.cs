@@ -15,6 +15,6 @@ namespace AdventOfCode.Interfaces
         List<int> FirstRowToIntList(string filePath);
         List<BingoBoard> FileToBingoBoards(string filePath);
         List<VentRange> FileToVentRanges(string filePath, int includeDiagonal = 0);
-      //  int[,] FileMatrixToMatrixArray(string filePath);
+        List<int> FileToIntListSplit(string filePath, char splitChar);
     }
 }

@@ -152,5 +152,15 @@ namespace AdventOfCode.Infrastructure
             }
             return ventRanges;
         }
+        public List<int> FileToIntListSplit(string filePath, char splitChar)
+        {
+            List<int> result = new();
+
+            foreach (string line in System.IO.File.ReadLines(filePath))
+            {
+                result.AddRange(line.Split(',').Select(Int32.Parse));
+            }
+            return result;
+        }
     }
 }

@@ -16,5 +16,6 @@ namespace AdventOfCode.Interfaces
         List<BingoBoard> GetBingoBoards();
         List<VentRange> GetVentRanges(int includeDiagonal);
         List<int> GetLanternFishColony();
+        List<int> GetCrabSubmarinePositions();
     }
 }

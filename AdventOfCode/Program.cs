@@ -98,6 +98,14 @@ namespace AdventOfCode
                     }
 
                 }
+                else if (day == 7)
+                {
+                    if (step == 1)
+                        result = string.Format("Optimal crab submarine fuel useage: {0}. Elapsed time: {1}.", submarine.Oceanography.OptimizeCrabFuelUseage(_repository.GetCrabSubmarinePositions(), 1).ToString(), watch.Elapsed);
+                    if (step == 2)
+                        result = string.Format("Optimal crab submarine fuel useage: {0}. Elapsed time: {1}.", submarine.Oceanography.OptimizeCrabFuelUseage(_repository.GetCrabSubmarinePositions(), 2).ToString(), watch.Elapsed);
+
+                }
                 Console.WriteLine(result);
 
                 Console.Write("Type Exit to exit or hit enter to go again.");

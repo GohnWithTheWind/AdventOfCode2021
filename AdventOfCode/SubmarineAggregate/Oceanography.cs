@@ -8,6 +8,26 @@ namespace AdventOfCode.SubmarineAggregate
 {
     public class Oceanography
     {
+
+        public int OptimizeCrabFuelUseage(List<int> crabPositions, int calculationVersion)
+        {
+            int maxPos = crabPositions.Max();
+            int minPos = crabPositions.Min();
+
+            List<Tuple<int, int>> possiblePositions = new();
+
+            for(int i = minPos; i <= maxPos; i++)
+            {
+                int fuelUseage = 0;
+                foreach(var crabSub in crabPositions)
+                {
+                    fuelUseage = fuelUseage + (calculationVersion == 1? Math.Abs(crabSub - i) : Math.Abs(crabSub - i) * (Math.Abs(crabSub - i) + 1) / 2);
+                }
+                possiblePositions.Add(new Tuple<int, int>(i, fuelUseage));
+            }
+            return possiblePositions.Min(i => i.Item2);
+        }
+
         public long SimulateLanternFishGrowth(List<int> fishColony, int numOfDays)
         {
             List<FishGroup> fishCount = new();

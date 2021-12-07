@@ -121,5 +121,20 @@ namespace UnitTests
             Assert.AreEqual(26984457539, res);
         }
 
+        [TestMethod]
+        public void Day7Step1()
+        {
+            Submarine submarine = new();
+            var res = submarine.Oceanography.OptimizeCrabFuelUseage(_repository.GetCrabSubmarinePositions(), 1);
+            Assert.AreEqual(37, res);
+        }
+        [TestMethod]
+        public void Day7Step2()
+        {
+            Submarine submarine = new();
+            var res = submarine.Oceanography.OptimizeCrabFuelUseage(_repository.GetCrabSubmarinePositions(), 2);
+            Assert.AreEqual(168, res);
+        }
+
     }
 }

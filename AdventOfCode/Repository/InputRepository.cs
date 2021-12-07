@@ -53,6 +53,10 @@ namespace AdventOfCode.Repository
         {
             return _reader.FirstRowToIntList("InputFiles/Day6/Day6.txt");
         }
+        public List<int> GetCrabSubmarinePositions()
+        {
+            return _reader.FileToIntListSplit("InputFiles/Day7/Day7.txt", ',');
+        }
 
 
     }
