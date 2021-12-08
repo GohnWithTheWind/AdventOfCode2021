@@ -23,7 +23,7 @@ namespace AdventOfCode.SubmarineAggregate
                 {
                     fuelUseage = fuelUseage + (calculationVersion == 1? Math.Abs(crabSub - i) : Math.Abs(crabSub - i) * (Math.Abs(crabSub - i) + 1) / 2);
                 }
-                possiblePositions.Add(new Tuple<int, int>(i, fuelUseage));
+                possiblePositions.Add(new(i, fuelUseage));
             }
             return possiblePositions.Min(i => i.Item2);
         }
@@ -33,7 +33,7 @@ namespace AdventOfCode.SubmarineAggregate
             List<FishGroup> fishCount = new();
             for(int i = 0; i < 9; i++)
             {
-                fishCount.Add(new FishGroup(i, 0));
+                fishCount.Add(new(i, 0));
             }
             foreach(var f in fishColony)
             {
@@ -55,12 +55,12 @@ namespace AdventOfCode.SubmarineAggregate
             {
                 if(item.DaysFromBirthing == 0)
                 {
-                    fishGroups.Add(new FishGroup(8, item.NumOfFish));
-                    fishGroups.Add(new FishGroup(6, item.NumOfFish + fishies.Where(f => f.DaysFromBirthing == 7).Select(s => s.NumOfFish).First()));
+                    fishGroups.Add(new(8, item.NumOfFish));
+                    fishGroups.Add(new(6, item.NumOfFish + fishies.Where(f => f.DaysFromBirthing == 7).Select(s => s.NumOfFish).First()));
                 }
                 else if(item.DaysFromBirthing != 7)
                 {
-                    fishGroups.Add(new FishGroup(item.DaysFromBirthing - 1, item.NumOfFish));
+                    fishGroups.Add(new(item.DaysFromBirthing - 1, item.NumOfFish));
                 }
             }
             return CalculateDailyFishGrowth(fishGroups, numOfDays - 1);

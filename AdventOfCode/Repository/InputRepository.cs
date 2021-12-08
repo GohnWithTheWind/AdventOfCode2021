@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static AdventOfCode.Diagnostics;
 
 namespace AdventOfCode.Repository
 {
@@ -56,6 +57,10 @@ namespace AdventOfCode.Repository
         public List<int> GetCrabSubmarinePositions()
         {
             return _reader.FileToIntListSplit("InputFiles/Day7/Day7.txt", ',');
+        }
+        public List<Display> GetDisplayData()
+        {
+            return _reader.FileToDisplays("InputFiles/Day8/Day8.txt");
         }
 
 

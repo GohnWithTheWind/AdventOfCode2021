@@ -58,8 +58,8 @@ namespace AdventOfCode
                 var watch = System.Diagnostics.Stopwatch.StartNew();
                 if (day == 1)
                 {
-                    result = string.Format("Descentspeed: {0}. Elapsed time: {1}.", submarine.Sonar.CalculateDescentSpeed(
-                        _repository.GetDescentData(), step).ToString(), watch.Elapsed);
+                    result = string.Format("Descentspeed: {0}. Elapsed time: {1}.", 
+                        submarine.Sonar.CalculateDescentSpeed(_repository.GetDescentData(), step).ToString(), watch.Elapsed);
                 }
 
                 else if (day == 2)
@@ -71,39 +71,56 @@ namespace AdventOfCode
                 {
                     submarine.Diagnostics.ReadPowerConsumptionStream(_repository.GetDiagnosticsData());
                     submarine.Diagnostics.ReadOxygenStream(_repository.GetDiagnosticsData());
-                    result = string.Format("Current diagnostics readings: {0} Elapsed time: {1}.", submarine.Diagnostics.ToString(), watch.Elapsed);
+                    result = string.Format("Current diagnostics readings: {0} Elapsed time: {1}.", 
+                        submarine.Diagnostics.ToString(), watch.Elapsed);
                 }
                 else if (day == 4)
                 {
                     submarine.Bingo.InitializeBingo(_repository.GetDrawnBingoNumbers(), _repository.GetBingoBoards());
                     if (step == 1)
-                    result = string.Format("The winner board is: {0}.  Elapsed time: {1}.", submarine.Bingo.GetWinner().ToString(), watch.Elapsed);
+                    result = string.Format("The winner board is: {0}.  Elapsed time: {1}.", 
+                        submarine.Bingo.GetWinner().ToString(), watch.Elapsed);
                     else if(step == 2)
-                        result = string.Format("The winner board is: {0}.  Elapsed time: {1}.", submarine.Bingo.GetLoser().ToString(), watch.Elapsed);
+                        result = string.Format("The winner board is: {0}.  Elapsed time: {1}.", 
+                            submarine.Bingo.GetLoser().ToString(), watch.Elapsed);
                 }
                 else if(day == 5)
                 {
                     if(step == 1)
-                        result = string.Format("Number of danger areas: {0}. Elapsed time: {1}.", submarine.Sonar.GetNumOfDangerAreas(_repository.GetVentRanges(0)), watch.Elapsed);
+                        result = string.Format("Number of danger areas: {0}. Elapsed time: {1}.", 
+                            submarine.Sonar.GetNumOfDangerAreas(_repository.GetVentRanges(0)), watch.Elapsed);
                     else if (step == 2)
-                        result = string.Format("Number of danger areas: {0}. Elapsed time: {1}.", submarine.Sonar.GetNumOfDangerAreas(_repository.GetVentRanges(1)), watch.Elapsed);
+                        result = string.Format("Number of danger areas: {0}. Elapsed time: {1}.", 
+                            submarine.Sonar.GetNumOfDangerAreas(_repository.GetVentRanges(1)), watch.Elapsed);
                 }
                 else if(day == 6)
                 {
                     if (step == 1)
-                        result = string.Format("Number of fishies after 80 days: {0}. Elapsed time: {1}.", submarine.Oceanography.SimulateLanternFishGrowth(_repository.GetLanternFishColony(), 80).ToString(), watch.Elapsed);
+                        result = string.Format("Number of fishies after 80 days: {0}. Elapsed time: {1}.", 
+                            submarine.Oceanography.SimulateLanternFishGrowth(_repository.GetLanternFishColony(), 80).ToString(), watch.Elapsed);
                     else if (step == 2)
                     {                      
-                        result = string.Format("Number of fishies after 256 days: {0}. Elapsed time: {1}.", submarine.Oceanography.SimulateLanternFishGrowth(_repository.GetLanternFishColony(), 256).ToString(), watch.Elapsed);
+                        result = string.Format("Number of fishies after 256 days: {0}. Elapsed time: {1}.", 
+                            submarine.Oceanography.SimulateLanternFishGrowth(_repository.GetLanternFishColony(), 256).ToString(), watch.Elapsed);
                     }
 
                 }
                 else if (day == 7)
                 {
                     if (step == 1)
-                        result = string.Format("Optimal crab submarine fuel useage: {0}. Elapsed time: {1}.", submarine.Oceanography.OptimizeCrabFuelUseage(_repository.GetCrabSubmarinePositions(), 1).ToString(), watch.Elapsed);
+                        result = result + string.Format("Optimal crab submarine fuel useage: {0}. Elapsed time: {1}.", 
+                            submarine.Oceanography.OptimizeCrabFuelUseage(_repository.GetCrabSubmarinePositions(), 1).ToString(), watch.Elapsed);
                     if (step == 2)
-                        result = string.Format("Optimal crab submarine fuel useage: {0}. Elapsed time: {1}.", submarine.Oceanography.OptimizeCrabFuelUseage(_repository.GetCrabSubmarinePositions(), 2).ToString(), watch.Elapsed);
+                        result = string.Format("Optimal crab submarine fuel useage: {0}. Elapsed time: {1}.", 
+                            submarine.Oceanography.OptimizeCrabFuelUseage(_repository.GetCrabSubmarinePositions(), 2).ToString(), watch.Elapsed);
+
+                }
+                else if (day == 8)
+                {
+                    if (step == 1)
+                        result = string.Format("Occurrences: {0}. Elapsed time {1}.", submarine.Diagnostics.DebugDisplays(_repository.GetDisplayData()).ToString(), watch.Elapsed);
+                    else if (step == 2)
+                        result = string.Format("Display Info: {0}. Elapsed time: {1}.", submarine.Diagnostics.DebugDisplays2(_repository.GetDisplayData()), watch.Elapsed);
 
                 }
                 Console.WriteLine(result);

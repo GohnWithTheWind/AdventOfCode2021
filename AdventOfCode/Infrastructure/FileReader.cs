@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static AdventOfCode.Diagnostics;
 
 namespace AdventOfCode.Infrastructure
 {
@@ -162,5 +163,21 @@ namespace AdventOfCode.Infrastructure
             }
             return result;
         }
-    }
+
+        public List<Display> FileToDisplays(string filePath)
+        {
+            List<Display> displays = new();
+            foreach (string line in System.IO.File.ReadLines(filePath))
+            {
+
+                List<string> pattern = new();
+                pattern.AddRange(line.Substring(0, line.IndexOf("|") - 1).Split(' ', StringSplitOptions.RemoveEmptyEntries));
+                List<string> output = new();
+                output.AddRange(line[(line.IndexOf("|") + 1)..].Split(' ', StringSplitOptions.RemoveEmptyEntries));
+                displays.Add(new(pattern, output));
+            }
+            return displays;
+        }
+
+}
 }

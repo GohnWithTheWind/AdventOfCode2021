@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static AdventOfCode.Diagnostics;
 
 namespace AdventOfCode.Interfaces
 {
@@ -16,5 +17,6 @@ namespace AdventOfCode.Interfaces
         List<BingoBoard> FileToBingoBoards(string filePath);
         List<VentRange> FileToVentRanges(string filePath, int includeDiagonal = 0);
         List<int> FileToIntListSplit(string filePath, char splitChar);
+        List<Display> FileToDisplays(string filePath);
     }
 }

@@ -4,6 +4,8 @@ using AdventOfCode.Interfaces;
 using AdventOfCode.Infrastructure;
 using AdventOfCode.Repository;
 using AdventOfCode.SubmarineAggregate;
+using static AdventOfCode.Diagnostics;
+using System.Collections.Generic;
 
 namespace UnitTests
 {
@@ -134,6 +136,24 @@ namespace UnitTests
             Submarine submarine = new();
             var res = submarine.Oceanography.OptimizeCrabFuelUseage(_repository.GetCrabSubmarinePositions(), 2);
             Assert.AreEqual(168, res);
+        }
+        [TestMethod]
+        public void Day8Step1()
+        {
+            Submarine submarine = new();
+            int res = submarine.Diagnostics.DebugDisplays(_repository.GetDisplayData());
+
+            Assert.AreEqual(26, res);
+
+        }
+        [TestMethod]
+        public void Day8Step2()
+        {
+            Submarine submarine = new();
+            int res = submarine.Diagnostics.DebugDisplays2(_repository.GetDisplayData());
+
+            Assert.AreEqual(61229, res);
+
         }
 
     }
