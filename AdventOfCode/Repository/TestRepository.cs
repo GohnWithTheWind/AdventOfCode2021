@@ -63,6 +63,10 @@ namespace AdventOfCode.Repository
         {
             return _reader.FileToDisplays("InputFiles/Day8/Day8Tests.txt");
         }
+        public HeightMap GetHeightMap()
+        {
+            return _reader.FileToHeightMap("InputFiles/Day9/Day9Tests.txt");
+        }
 
 
     }

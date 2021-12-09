@@ -155,6 +155,24 @@ namespace UnitTests
             Assert.AreEqual(61229, res);
 
         }
+        [TestMethod]
+        public void Day9Step1()
+        {
+            Submarine submarine = new();
+            int res = submarine.Sonar.GetSmokeFilledAreas(_repository.GetHeightMap());
+
+            Assert.AreEqual(15, res);
+
+        }
+        [TestMethod]
+        public void Day9Step2()
+        {
+            Submarine submarine = new();
+            int res = submarine.Sonar.GetBasins(_repository.GetHeightMap());
+
+            Assert.AreEqual(1134, res);
+
+        }
 
     }
 }

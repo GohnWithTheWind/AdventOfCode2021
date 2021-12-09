@@ -123,6 +123,13 @@ namespace AdventOfCode
                         result = string.Format("Display Info: {0}. Elapsed time: {1}.", submarine.Diagnostics.DebugDisplays2(_repository.GetDisplayData()), watch.Elapsed);
 
                 }
+                else if(day == 9)
+                {
+                    if (step == 1)
+                        result = string.Format("Number: {0}. Elapsed time {1}.", submarine.Sonar.GetSmokeFilledAreas(_repository.GetHeightMap()).ToString(), watch.Elapsed);
+                    if(step == 2)
+                        result = string.Format("Number: {0}. Elapsed time {1}.", submarine.Sonar.GetBasins(_repository.GetHeightMap()).ToString(), watch.Elapsed);
+                }
                 Console.WriteLine(result);
 
                 Console.Write("Type Exit to exit or hit enter to go again.");

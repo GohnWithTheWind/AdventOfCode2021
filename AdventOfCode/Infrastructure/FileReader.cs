@@ -179,5 +179,29 @@ namespace AdventOfCode.Infrastructure
             return displays;
         }
 
-}
+        public HeightMap FileToHeightMap(string filePath)
+        {
+            var file = System.IO.File.ReadLines(filePath);
+
+            int fileLen = file.Count();
+            int rowLength = file.First().Length;
+
+            HeightMap map = new(fileLen, rowLength);
+            int matrixRow = 0;
+
+            foreach (var l in file)
+            {
+                var rowNumbers = l.ToCharArray();
+
+               for (int i = 0; i < rowNumbers.Length; i++)
+               {
+                    map.Matrix[matrixRow, i] = new MapNumber(int.Parse(rowNumbers[i].ToString()), false, i , matrixRow);
+               }
+                    matrixRow++;
+            }
+     
+            return map;
+        }
+
+    }
 }

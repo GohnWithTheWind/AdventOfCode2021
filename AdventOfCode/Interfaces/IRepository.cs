@@ -19,5 +19,6 @@ namespace AdventOfCode.Interfaces
         List<int> GetLanternFishColony();
         List<int> GetCrabSubmarinePositions();
         List<Display> GetDisplayData();
+        HeightMap GetHeightMap();
     }
 }

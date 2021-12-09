@@ -18,5 +18,6 @@ namespace AdventOfCode.Interfaces
         List<VentRange> FileToVentRanges(string filePath, int includeDiagonal = 0);
         List<int> FileToIntListSplit(string filePath, char splitChar);
         List<Display> FileToDisplays(string filePath);
+        HeightMap FileToHeightMap(string filePath);
     }
 }

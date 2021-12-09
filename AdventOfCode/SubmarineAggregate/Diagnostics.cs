@@ -63,7 +63,7 @@ namespace AdventOfCode
 
                 char char6 = intList.Where(i => i.Item1 == 9).First().Item2;
 
-                char char3 = dis.Pattern.Where(d => d.Length == 2).First().Replace(char6.ToString(), string.Empty).Substring(0, 1).ToCharArray()[0];
+                char char3 = dis.Pattern.Where(d => d.Length == 2).First().Replace(char6.ToString(), string.Empty).ToCharArray()[0];
 
                 char char1 = dis.Pattern.Where(d => d.Length == 3).First().Replace(char6.ToString(), string.Empty).Replace(char3.ToString(), string.Empty).Substring(0, 1).ToCharArray()[0];
 
