@@ -20,5 +20,6 @@ namespace AdventOfCode.Interfaces
         List<int> GetCrabSubmarinePositions();
         List<Display> GetDisplayData();
         HeightMap GetHeightMap();
+        List<string> GetSubSystemData();
     }
 }

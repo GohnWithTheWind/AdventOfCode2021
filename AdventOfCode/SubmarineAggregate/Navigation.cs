@@ -8,6 +8,88 @@ namespace AdventOfCode
 {
     public class Navigation
     {
+        public long GetIncompleteLineScore(List<string> input)
+        {
+            List<long> scores = new();
+            foreach (string l in input)
+            {
+                if(GetCorruptionChar(l).CharValue == 0)
+                {
+                    scores.Add(GetLineScore(l));
+                }
+            }
+            var scoresSorted = scores.OrderBy(s => s).ToList();
+            return scoresSorted[scores.Count / 2];
+        }
+
+        private long GetLineScore(string line)
+        {
+            List<Tuple<string, string>> delimiters = new();
+            delimiters.Add(new("(", ")"));
+            delimiters.Add(new("[", "]"));
+            delimiters.Add(new("{", "}"));
+            delimiters.Add(new("<", ">"));
+
+            long score = 0;
+            List<ChunkCharInfo> charInfo = new();
+            for (int i = 0; i < line.Length; i++)
+            {
+                charInfo.Add(new(i, line.Substring(i, 1)));
+            }
+            foreach (var stopChar in charInfo.Where(c => c.CharType == "Stop"))
+            {
+                var startChar = charInfo.Where(c => c.CharType == "Start" && c.IsUsed == false && c.Position < stopChar.Position).OrderByDescending(o => o.Position).FirstOrDefault();
+                if (startChar.Character == delimiters.Where(c => c.Item2 == stopChar.Character).Select(s => s.Item1).FirstOrDefault())
+                {
+                    startChar.IsUsed = true;
+                    stopChar.IsUsed = true;
+                }
+            }
+            var resList = charInfo.Where(s => s.IsUsed == false && s.CharType == "Start").ToList();
+            for (int i = resList.Count - 1; i >= 0; i--)
+            {
+                score = (score * 5) + resList[i].CharValue;
+            }
+            return score;
+        }
+      
+        public int GetIllegalSyntaxScore(List<string> input)
+        {
+            List<ChunkCharInfo> result = new();
+            foreach(string l in input)
+            {
+                result.Add(GetCorruptionChar(l));
+            }
+            return result.Select(s => s.CharValue).Sum();
+        }
+        private ChunkCharInfo GetCorruptionChar(string line)
+        {
+            List<Tuple<string,string>> delimiters = new();
+            delimiters.Add(new("(", ")"));
+            delimiters.Add(new("[", "]"));
+            delimiters.Add(new("{", "}"));
+            delimiters.Add(new("<", ">"));
+
+            List<ChunkCharInfo> charInfo = new();
+            for (int i = 0; i < line.Length; i++)
+            {
+                charInfo.Add(new(i,line.Substring(i, 1)));
+            }
+            foreach(var stopChar in charInfo.Where(c => c.CharType == "Stop"))
+            {
+                var startChar = charInfo.Where(c => c.CharType == "Start" && c.IsUsed == false && c.Position < stopChar.Position).OrderByDescending(o => o.Position).FirstOrDefault();
+                if(startChar.Character != delimiters.Where(c => c.Item2 == stopChar.Character).Select(s => s.Item1).FirstOrDefault())
+                {
+                    return stopChar;
+                }
+                else
+                {
+                    startChar.IsUsed = true;
+                }
+            }
+            return new ChunkCharInfo(0, "");
+        }
+
         public Position NavigateFromInput(List<NavigationInput> input, int navigationVersion)
         {
             Position position = new();
@@ -72,4 +154,43 @@ namespace AdventOfCode
         public int Amount { get; set; }
         public string Direction { get; set; }
     }
+
+    public class DelimiterInfo
+    {
+        public string StartChar { get; set; }
+        public string StopChar { get; set; }
+        public DelimiterInfo(string startChar, string stopChar)
+        {
+            StartChar = startChar;
+            StopChar = stopChar;
+        }
+    }
+
+    public class ChunkCharInfo
+    {
+        public int Position { get; set; }
+        public string Character { get; set; }
+        public int Sequence { get; set; }
+        public bool IsUsed { get; set; }
+        public string CharType { get
+            {
+                return Character == "<" || Character == "(" || Character == "{" || Character == "[" ? "Start" : "Stop";
+            } 
+        }
+        public int CharValue
+        {
+            get
+            {
+                return Character == ")" ? 3 : Character == "]" ? 57 : Character == "}" ? 1197 : Character == ">" ? 25137 :
+                    Character == "(" ? 1 : Character == "[" ? 2 : Character == "{" ? 3 : Character == "<" ? 4 : 0;
+            }
+        }
+        public ChunkCharInfo(int position, string character)
+        {
+            Position = position;
+            Character = character;
+            IsUsed = false;
+        }
+    }
+
 }

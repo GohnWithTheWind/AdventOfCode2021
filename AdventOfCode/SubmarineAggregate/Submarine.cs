@@ -16,7 +16,7 @@ namespace AdventOfCode
         private static readonly Oceanography StartOceanography = new();
 
         private Position Position { get; set; }
-        private Navigation Navigation { get; set; }
+        public Navigation Navigation { get; set; }
 
         public readonly Bingo Bingo;
 
@@ -33,6 +33,7 @@ namespace AdventOfCode
             Diagnostics = StartDiagnostics;
             Bingo = StartBingo;
             Oceanography = StartOceanography;
+            Navigation = new Navigation();
         }
 
         public Position GetPosition()

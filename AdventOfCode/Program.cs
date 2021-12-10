@@ -130,6 +130,13 @@ namespace AdventOfCode
                     if(step == 2)
                         result = string.Format("Number: {0}. Elapsed time {1}.", submarine.Sonar.GetBasins(_repository.GetHeightMap()).ToString(), watch.Elapsed);
                 }
+                else if(day == 10)
+                {
+                    if(step == 1)
+                        result = string.Format("Syntax error score: {0}. Elapsed time {1}.", submarine.Navigation.GetIllegalSyntaxScore(_repository.GetSubSystemData()).ToString(), watch.Elapsed);
+                    else if (step == 2)
+                        result = string.Format("Incomplete line score: {0}. Elapsed time {1}.", submarine.Navigation.GetIncompleteLineScore(_repository.GetSubSystemData()).ToString(), watch.Elapsed);
+                }
                 Console.WriteLine(result);
 
                 Console.Write("Type Exit to exit or hit enter to go again.");

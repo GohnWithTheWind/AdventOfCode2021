@@ -173,6 +173,21 @@ namespace UnitTests
             Assert.AreEqual(1134, res);
 
         }
+        [TestMethod]
+        public void Day10Step1()
+        {
+            Submarine submarine = new();
+            int res = submarine.Navigation.GetIllegalSyntaxScore(_repository.GetSubSystemData());
 
+            Assert.AreEqual(26397, res);
+        }
+        [TestMethod]
+        public void Day10Step2()
+        {
+            Submarine submarine = new();
+            long res = submarine.Navigation.GetIncompleteLineScore(_repository.GetSubSystemData());
+            Assert.AreEqual(288957, res);
+        }
+        
     }
 }

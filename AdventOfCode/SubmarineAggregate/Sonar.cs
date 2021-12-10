@@ -25,7 +25,7 @@ namespace AdventOfCode
             return top3[0].BasinNodes * top3[1].BasinNodes * top3[2].BasinNodes;
 
         }
-        public List<MapNumber> GetBasinNodes(HeightMap map, MapNumber number, List<MapNumber> nodes)
+        private List<MapNumber> GetBasinNodes(HeightMap map, MapNumber number, List<MapNumber> nodes)
         {
 
             for (int y = -1; y <= 1; y++)
