@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static AdventOfCode.Diagnostics;
+using static AdventOfCode.SubmarineAggregate.Oceanography;
 
 namespace AdventOfCode.Repository
 {
@@ -69,6 +70,10 @@ namespace AdventOfCode.Repository
         public List<string> GetSubSystemData()
         {
             return _reader.FileToStringList("InputFiles/Day10/Day10.txt");
+        }
+        public OctopusGroup GetOctopusStatus()
+        {
+            return _reader.FileToOctopusGroup("InputFiles/Day11/Day11.txt");
         }
 
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static AdventOfCode.Diagnostics;
+using static AdventOfCode.SubmarineAggregate.Oceanography;
 
 namespace AdventOfCode.Interfaces
 {
@@ -19,5 +20,6 @@ namespace AdventOfCode.Interfaces
         List<int> FileToIntListSplit(string filePath, char splitChar);
         List<Display> FileToDisplays(string filePath);
         HeightMap FileToHeightMap(string filePath);
+        OctopusGroup FileToOctopusGroup(string filePath);
     }
 }

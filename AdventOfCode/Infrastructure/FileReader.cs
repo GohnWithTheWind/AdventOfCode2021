@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static AdventOfCode.Diagnostics;
+using static AdventOfCode.SubmarineAggregate.Oceanography;
 
 namespace AdventOfCode.Infrastructure
 {
@@ -200,6 +201,29 @@ namespace AdventOfCode.Infrastructure
                     matrixRow++;
             }
      
+            return map;
+        }
+        public OctopusGroup FileToOctopusGroup(string filePath)
+        {
+            var file = System.IO.File.ReadLines(filePath);
+
+            int fileLen = file.Count();
+            int rowLength = file.First().Length;
+
+            OctopusGroup map = new(fileLen, rowLength);
+            int matrixRow = 0;
+
+            foreach (var l in file)
+            {
+                var rowNumbers = l.ToCharArray();
+
+                for (int i = 0; i < rowNumbers.Length; i++)
+                {
+                    map.Matrix[matrixRow, i] = new Octopus(int.Parse(rowNumbers[i].ToString()), false, i, matrixRow);
+                }
+                matrixRow++;
+            }
+
             return map;
         }
 

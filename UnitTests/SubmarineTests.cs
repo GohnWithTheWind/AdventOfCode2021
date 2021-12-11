@@ -188,6 +188,20 @@ namespace UnitTests
             long res = submarine.Navigation.GetIncompleteLineScore(_repository.GetSubSystemData());
             Assert.AreEqual(288957, res);
         }
-        
+        [TestMethod]
+        public void Day11Step1()
+        {
+            Submarine submarine = new();
+            int res = submarine.Oceanography.SimulateOctopusSignals(_repository.GetOctopusStatus(), 100);
+            Assert.AreEqual(1656, res);
+        }
+        [TestMethod]
+        public void Day11Step2()
+        {
+            Submarine submarine = new();
+            int res = submarine.Oceanography.SimulateOctopusSimultaneousFlash(_repository.GetOctopusStatus());
+            Assert.AreEqual(195, res);
+        }
+
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static AdventOfCode.Diagnostics;
+using static AdventOfCode.SubmarineAggregate.Oceanography;
 
 namespace AdventOfCode.Interfaces
 {
@@ -21,5 +22,6 @@ namespace AdventOfCode.Interfaces
         List<Display> GetDisplayData();
         HeightMap GetHeightMap();
         List<string> GetSubSystemData();
+        OctopusGroup GetOctopusStatus();
     }
 }

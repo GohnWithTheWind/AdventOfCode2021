@@ -3,11 +3,23 @@ using AdventOfCode.Infrastructure;
 using AdventOfCode.Interfaces;
 using AdventOfCode.Repository;
 using AdventOfCode.SubmarineAggregate;
+using static AdventOfCode.SubmarineAggregate.Oceanography;
 
 namespace AdventOfCode
 {
     class Program
     {
+        public static void Print2DArray<T>(T[,] matrix)
+        {
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    Console.Write(matrix[i, j].ToString() + "\t");
+                }
+                Console.WriteLine();
+            }
+        }
         static void Main()
         {
 
@@ -136,6 +148,24 @@ namespace AdventOfCode
                         result = string.Format("Syntax error score: {0}. Elapsed time {1}.", submarine.Navigation.GetIllegalSyntaxScore(_repository.GetSubSystemData()).ToString(), watch.Elapsed);
                     else if (step == 2)
                         result = string.Format("Incomplete line score: {0}. Elapsed time {1}.", submarine.Navigation.GetIncompleteLineScore(_repository.GetSubSystemData()).ToString(), watch.Elapsed);
+                }
+                else if(day == 11)
+                {
+                    if (step == 1)
+                        result = string.Format("Number of octopus flashes: {0}. Elapsed time {1}.", submarine.Oceanography.SimulateOctopusSignals(_repository.GetOctopusStatus(), 100).ToString(), watch.Elapsed);
+                    else if(step == 2)
+                        result = string.Format("Simultaneous flash after: {0} loops. Elapsed time {1}.", submarine.Oceanography.SimulateOctopusSimultaneousFlash(_repository.GetOctopusStatus()).ToString(), watch.Elapsed);
+                    else if(step == 3)
+                    {
+                        var res = submarine.Oceanography.SimulateOctopusSignalsGraphic(_repository.GetOctopusStatus(), 100);
+                        foreach (var matrix in res.BlinkEvents)
+                        {
+                            Console.WriteLine(string.Format("Loop Number: {0}.", matrix.LoopSequence.ToString()));
+                            Thread.Sleep(200);
+                            Console.Clear();
+                            Print2DArray(matrix.Matrix);                       
+                        }
+                    }
                 }
                 Console.WriteLine(result);
 

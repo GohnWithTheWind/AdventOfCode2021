@@ -8,6 +8,103 @@ namespace AdventOfCode.SubmarineAggregate
 {
     public class Oceanography
     {
+        public int SimulateOctopusSimultaneousFlash(OctopusGroup map)
+        {
+            int leftToFlash = 1;
+            int i = 0;
+
+            while(leftToFlash > 0)
+            {
+                foreach (var n in map.Matrix)
+                {
+                    n.Energy++;
+                    n.HasBlinked = false;
+                }
+                map = OctopusBlink(map, i, 0);
+                i++;
+                leftToFlash = (from Octopus o in map.Matrix where o.HasBlinked == false select o).Count();
+            }
+            return i;
+        }
+        public OctopusGroup SimulateOctopusSignalsGraphic(OctopusGroup map, int samplingSize)
+        {
+            for (int i = 0; i < samplingSize; i++)
+            {
+                foreach (var n in map.Matrix)
+                {
+                    n.Energy++;
+                    n.HasBlinked = false;
+                }
+                map = OctopusBlink(map, i, 0);
+            }
+            return map;
+        }
+        public int SimulateOctopusSignals(OctopusGroup map, int samplingSize)
+        {
+            for (int i = 0; i < samplingSize; i++)
+            {
+                foreach (var n in map.Matrix)
+                {
+                    n.Energy++;
+                    n.HasBlinked = false;
+                }
+                map = OctopusBlink(map, i, 0);
+            }
+            return (from Octopus o in map.Matrix select o.BlinkCount).Sum();
+        }
+
+        public OctopusGroup OctopusBlink(OctopusGroup map, int loopNo, int blinkSequence)
+        {
+            var keepBlinking = (from Octopus n in map.Matrix where n.Energy > 9 && n.HasBlinked == false select n).FirstOrDefault();
+            if (keepBlinking == null)
+            {
+                foreach(var n in map.Matrix)
+                {
+                    if (n.Energy > 9)
+                        n.Energy = 0;
+                }
+                return map;
+            }
+            foreach(var n in map.Matrix)
+            {
+                if(n.Energy > 9 && n.HasBlinked == false)
+                {
+                    n.HasBlinked = true;
+                    n.BlinkCount++;
+                    // Collect blink events to be able to play through them in console. 
+                    var events = GetNewOctoGroup(map);
+                    events.LoopSequence = loopNo;
+                    events.SpreadSequence = blinkSequence;
+                    map.BlinkEvents.Add(events);
+
+                    for(int y = -1; y <= 1; y++)
+                    {
+                        for (int x = -1; x <= 1; x++)
+                        {
+                            if (!(x == 0 && y == 0))
+                            {                              
+                                var posX = x + n.PosX;
+                                var posY = y + n.PosY;
+                                if (posX >= 0 && posX <= 9 && posY >= 0 && posY <= 9)
+                                    map.Matrix[posY, posX].Energy++;
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+            return OctopusBlink(map, loopNo, blinkSequence++);
+        }
+
+        private OctopusGroup GetNewOctoGroup(OctopusGroup group)
+        {
+            var g = new OctopusGroup(10, 10);
+            foreach(var v in group.Matrix)
+            {
+                g.Matrix[v.PosY, v.PosX] = new Octopus(v.Energy, v.HasBlinked, v.PosX, v.PosY);
+            }
+            return g;
+        }
 
         public int OptimizeCrabFuelUseage(List<int> crabPositions, int calculationVersion)
         {
@@ -77,6 +174,45 @@ namespace AdventOfCode.SubmarineAggregate
                 DaysFromBirthing = daysFromBirthing;
                 NumOfFish = numOfFish; 
             }
+        }
+
+        public class OctopusGroup
+        {
+            public Octopus[,] Matrix { get; set; }
+            public List<OctopusGroup> BlinkEvents { get; set; }
+            public int SpreadSequence { get; set; }
+            public int LoopSequence { get; set; }
+
+            public OctopusGroup(int dimensionX, int dimensionY)
+            {
+                Matrix = new Octopus[dimensionX, dimensionY];
+                BlinkEvents = new List<OctopusGroup>();
+            }
+        }
+
+        public class Octopus
+        {
+            public int Energy { get; set; }
+            public bool HasBlinked { get; set; }
+            public int BlinkCount { get; set; }
+            public int PosX { get; set; }
+            public int PosY { get; set; }
+
+            public Octopus(int number, bool isChecked, int posX, int posY)
+            {
+                Energy = number;
+                HasBlinked = isChecked;
+                PosX = posX;
+                PosY = posY;
+                BlinkCount = 0;
+            }
+
+            public override string ToString()
+            {
+                //return Energy.ToString();
+                return HasBlinked ? "-1" : Energy.ToString();
+            }
+
         }
 
     }
