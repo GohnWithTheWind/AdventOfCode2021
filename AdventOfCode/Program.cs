@@ -157,8 +157,8 @@ namespace AdventOfCode
                         result = string.Format("Simultaneous flash after: {0} loops. Elapsed time {1}.", submarine.Oceanography.SimulateOctopusSimultaneousFlash(_repository.GetOctopusStatus()).ToString(), watch.Elapsed);
                     else if(step == 3)
                     {
-                        var res = submarine.Oceanography.SimulateOctopusSignalsGraphic(_repository.GetOctopusStatus(), 100);
-                        foreach (var matrix in res.BlinkEvents)
+                        var res = submarine.Oceanography.SimulateOctopusSignalsWithEvents(_repository.GetOctopusStatus(), 100);
+                        foreach (var matrix in res.FlashEvents)
                         {
                             Console.WriteLine(string.Format("Loop Number: {0}.", matrix.LoopSequence.ToString()));
                             Thread.Sleep(200);

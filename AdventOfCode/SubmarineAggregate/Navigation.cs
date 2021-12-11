@@ -77,7 +77,8 @@ namespace AdventOfCode
             }
             foreach(var stopChar in charInfo.Where(c => c.CharType == "Stop"))
             {
-                var startChar = charInfo.Where(c => c.CharType == "Start" && c.IsUsed == false && c.Position < stopChar.Position).OrderByDescending(o => o.Position).FirstOrDefault();
+                var startChar = charInfo.Where(c => c.CharType == "Start" && c.IsUsed == false && 
+                c.Position < stopChar.Position).OrderByDescending(o => o.Position).FirstOrDefault();
                 if(startChar.Character != delimiters.Where(c => c.Item2 == stopChar.Character).Select(s => s.Item1).FirstOrDefault())
                 {
                     return stopChar;
